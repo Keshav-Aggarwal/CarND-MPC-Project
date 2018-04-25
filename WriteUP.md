@@ -22,7 +22,7 @@ Steering: Positive value denotes right steer while negative steer denotes left s
 Throttle: Value of throttle can be between -1 and +1. Positive value means acceleration while negative value brake.
 
 ### Update equations
-
+![alt text](https://raw.githubusercontent.com/Keshav-Aggarwal/CarND-MPC-Project/master/Equations.PNG)
 dt => rate of change of state
 Lf => Distance between the mass of center and front axle
 
