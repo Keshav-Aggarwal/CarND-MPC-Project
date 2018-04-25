@@ -39,8 +39,17 @@ Given waypoints were in Global coordinate system, we need to convert the global 
 
 ![alt text](https://raw.githubusercontent.com/Keshav-Aggarwal/CarND-MPC-Project/master/Equations_x.PNG)
 
-Finally the weights with which the car drived properly in simulator are:
+Finally the weights with which the car drive properly in simulator are:
 
+|Weight For   | Weight  |
+|---|---|
+| CTE  | 1500.0  |
+| EPSI  | 1500.0  |
+| Velocity  | 1.0  |
+|  Delta (Steering)  |10.0   |
+| Acceleration (Throttle)  | 10.0  |
+| Delta (sequential)   | 150.0  |
+| Acceleration (Sequential)  | 15.0  |
 
 ### Model Predictive Control with Latency
 To replicate the latency sleep method is used with a latency of 100ms to calculate the next state.
