@@ -91,13 +91,46 @@ int main() {
           double py = j[1]["y"];
           double psi = j[1]["psi"];
           double v = j[1]["speed"];
+          double steer = j[1]["steering_angle"];
+          double throttle = j[1]["throttle"];
+          
+          const int waypoints_num = ptsx.size();
 
-          /*
-          * TODO: Calculate steering angle and throttle using MPC.
-          *
-          * Both are in between [-1, 1].
-          *
-          */
+          Eigen::VectorXd waypoints_xs(waypoints_num);
+          Eigen::VectorXd waypoints_xy(waypoints_num);
+
+          for(unsigned int i = 0; i < waypoints_num; i++){
+            double x = ptsx[i] - px;
+            double y = ptsy[i] - py;
+
+            waypoints_xs[i] = x * cos(-psi) - y * sin(-psi)
+            waypoints_xy[i] = y * cos(-psi) + x * sin(-psi)
+
+          }
+          const int poly_order = 3;
+          auto K = polyfit(waypoints_xs, waypoints_ys, poly_order);
+
+          //Get points
+
+          std::vector<double> next_x(N);
+          std::vector<double> next_y(N);
+          const double D = 5.0;
+
+          for(unsigned int i = 0; i < N; i++)
+          {
+            const double dx = D * i;
+            const double dy = K[3] * dx * dx * dx + K[2] * dx * dx + K[1] * dx + K[0];
+
+            next_x[i] = dx;
+            next_y[i] = dy;
+          }
+
+          const double cte = K[0];
+          const double epsi = -atan(K[1]);
+          
+
+
+
           double steer_value;
           double throttle_value;
 
