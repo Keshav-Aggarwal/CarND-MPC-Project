@@ -23,6 +23,7 @@ Throttle: Value of throttle can be between -1 and +1. Positive value means accel
 
 ### Update equations
 ![alt text](https://raw.githubusercontent.com/Keshav-Aggarwal/CarND-MPC-Project/master/Equations.PNG)
+
 dt => rate of change of state
 Lf => Distance between the mass of center and front axle
 
@@ -35,6 +36,8 @@ milliseconds.
 ### Polynomial Fitting and MPC Preprocessing
 I am using 3rd degree polynomial as it will fit mostly roads as suggested in course. 
 Given waypoints were in Global coordinate system, we need to convert the global points to vehicle's coordinate system. We used below equations for this:
+
+![alt text](https://raw.githubusercontent.com/Keshav-Aggarwal/CarND-MPC-Project/master/Equations_x.PNG)
 
 Finally the weights with which the car drived properly in simulator are:
 
